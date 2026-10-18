@@ -1,0 +1,50 @@
+/* 配線仮定付きの試験版。端子対応の根拠と未確認点は別ファイルに記載。 */
+#include "boards/shields/moNa2/pmw3360-wiring.dtsi"
+
+#if PMW3360_MOSI_PORT == PMW3360_MISO_PORT && PMW3360_MOSI_PIN == PMW3360_MISO_PIN
+#error "PMW3360のMOSIとMISOには別の接続先が必要です。実際の配線を確認してください。"
+#endif
+
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, PMW3360_SCK_PORT, PMW3360_SCK_PIN)>,
+                    <NRF_PSEL(SPIM_MOSI, PMW3360_MOSI_PORT, PMW3360_MOSI_PIN)>,
+                    <NRF_PSEL(SPIM_MISO, PMW3360_MISO_PORT, PMW3360_MISO_PIN)>;
+        };
+    };
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, PMW3360_SCK_PORT, PMW3360_SCK_PIN)>,
+                    <NRF_PSEL(SPIM_MOSI, PMW3360_MOSI_PORT, PMW3360_MOSI_PIN)>,
+                    <NRF_PSEL(SPIM_MISO, PMW3360_MISO_PORT, PMW3360_MISO_PIN)>;
+            low-power-enable;
+        };
+    };
+};
+
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&PMW3360_CS_CONTROLLER PMW3360_CS_PIN GPIO_ACTIVE_LOW>;
+
+    trackball_central: trackball@0 {
+        compatible = "pixart,pmw3360";
+        status = "okay";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        cpi = <500>;
+        polling-interval = <4000>;
+#ifdef PMW3360_IRQ_PIN
+        irq-gpios = <&PMW3360_IRQ_CONTROLLER PMW3360_IRQ_PIN (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+#endif
+    };
+};
+
+&trackball_central_listener {
+    status = "okay";
+    device = <&trackball_central>;
+};

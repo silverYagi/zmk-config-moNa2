@@ -93,7 +93,7 @@ moNa2標準のPMW3610設定ではMOSIとMISOがP0.04を共用していたため�
 写真の端子表記を基に`pmw3360-wiring.dtsi`へ試験用の対応を記述し、右側ビルドへ次を指定しています。
 
 ```yaml
-cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf'
+cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
 artifact-name: mona2-right-keyball39-dya-pmw3360-test
 ```
 

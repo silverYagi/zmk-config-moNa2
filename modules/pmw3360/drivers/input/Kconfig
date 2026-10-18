@@ -15,6 +15,7 @@ menuconfig INPUT_PIXART_PMW3360
 
 config INPUT_PIXART_PMW3360_USE_OWN_THREAD
     bool "Create a thread for the PMW3360 driver."
+    depends on INPUT_PIXART_PMW3360
     default y
 
 config INPUT_PIXART_PMW3360_THREAD_PRIORITY

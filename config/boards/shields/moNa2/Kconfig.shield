@@ -7,6 +7,7 @@ config SHIELD_MONA2_L
 config TRACKBALL_PMW3360
     bool "Keyball39 PMW3360 trackball"
     depends on SHIELD_MONA2_R
+    depends on DT_HAS_PIXART_PMW3360_ENABLED
     default n
     help
       pmw3360-wiring.dtsiの接続仮定でPMW3360を読み取る試験版。
