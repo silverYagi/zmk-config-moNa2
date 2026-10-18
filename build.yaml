@@ -1,29 +1,12 @@
-# This file generates the GitHub Actions matrix.
-# For simple board + shield combinations, add them to the top level board and
-# shield arrays, for more control, add individual board + shield combinations
-# to the `include` property. You can also use the `cmake-args` property to
-# pass flags to the build command and `artifact-name` to assign a name to
-# distinguish build outputs from each other:
-#
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#   - board: nice_nano_v2
-#     shield: corne_left
-#     cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
-#     artifact-name: corne_left_with_logging
-#
----
+# センサー配線の確認中は、端子を駆動しないDYAキーボード確認用のみ生成する。
 include:
   - board: seeeduino_xiao_ble
     shield: moNa2_R rgbled_adapter
-    artifact-name: mona2-right-keyball39-pmw3610
+    snippet: studio-rpc-usb-uart
+    artifact-name: mona2-right-keyball39-dya-keyboard-only
   - board: seeeduino_xiao_ble
     shield: moNa2_L rgbled_adapter
-    artifact-name: mona2-left-keyball39
+    artifact-name: mona2-left-keyball39-dya
   - board: seeeduino_xiao_ble
     shield: settings_reset
-    artifact-name: mona2-settings-reset
+    artifact-name: mona2-settings-reset-dya

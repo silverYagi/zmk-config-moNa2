@@ -1,0 +1,11 @@
+/* この見本をそのまま使わず、実際の配線を確認して値を記入する。 */
+#error "PMW3360の配線確認が必要です。SCK/MOSI/MISO/CS/電源の接続先を確認してください。"
+
+/* 必須: 下記のマクロを実際のnRF GPIO番号で定義する。 */
+/* PMW3360_SCK_PORT / PMW3360_SCK_PIN */
+/* PMW3360_MOSI_PORT / PMW3360_MOSI_PIN */
+/* PMW3360_MISO_PORT / PMW3360_MISO_PIN */
+/* PMW3360_CS_CONTROLLER / PMW3360_CS_PIN */
+
+/* 任意: MOTION線がある場合だけ定義し、なければポーリングを使用する。 */
+/* PMW3360_IRQ_CONTROLLER / PMW3360_IRQ_PIN */

@@ -1,5 +1,9 @@
 # Keyball39配列のmoNa2移植版
 
+現在はDYA Studio対応のキーボード確認用です。右側のトラックボール端子は駆動しません。
+Keyball39の読取基板はPMW3360用で、以前のPMW3610用とはドライバーが違います。
+PMW3360を有効にした完成版には、moNa2へ接続したSCK／MOSI／MISO／CSと電源の実配線確認が必要です。
+
 個人用Keyball39の`keymaps/via/keymap.c`を基に、物理的に存在する39キーをmoNa2の対応する位置へ移植しています。
 元のKeyball39と同じ日本語／英語キーボード設定をWindowsでも使ってください。特に記号キーは元と同じHIDコードを送ります。
 
@@ -7,9 +11,9 @@
 | --- | --- | --- |
 | 0 | QWERTY | 起動時の既定。大西配列の右下キーでも戻れます |
 | 1 | 大西配列 | QWERTYの右下キーで切り替え |
-| 2 | 記号・マウス | 左親指の記号キーを長押し。トラックボール操作でも一時的に有効 |
+| 2 | 記号・マウス | 左親指の記号キーを長押し。センサー有効化後はボール操作でも一時的に有効 |
 | 3 | 数字・カーソル | 右親指のレイヤーキーを長押し |
-| 4 | ファンクション | 左親指の最も内側のキーを長押し。トラックボールがスクロールになります |
+| 4 | ファンクション | 左親指の最も内側のキーを長押し。センサー有効化後はトラックボールがスクロールになります |
 | 5 | Bluetooth管理 | 左手下段のBの右にある追加キーを長押し |
 
 QWERTYと大西配列は、ホーム行のCtrl／Alt／Shift長押し、Shift／Space、親指のレイヤー操作を元と揃えています。
@@ -26,6 +30,7 @@ QWERTYと大西配列は、ホーム行のCtrl／Alt／Shift長押し、Shift／
 | 左上W | Bluetoothへ入力を送る |
 | 右上Y／U／I／O／P | Bluetooth接続先0／1／2／3／4を選択 |
 | 右下の文字キー `/` | 選択中の接続先のペアリング情報を消去 |
+| 右手ホーム行いちばん右（通常はMINUS） | DYA Studioの編集ロックを解除 |
 
 新しくWindowsへ接続するときは空き接続先を選びます。登録済みの接続先を再利用するなら、その接続先の情報をキーボードとWindowsの両方で削除します。
 USB給電中にBluetoothで入力する場合は「管理キー＋W」で出力を切り替えます。USBへ戻す操作は「管理キー＋Q」です。
@@ -33,10 +38,19 @@ Windowsとの互換性確認用に、右側の`CONFIG_BT_CTLR_PHY_2M=n`を設定
 
 ## Keyball固有機能の違い
 
-元配列のCPI増減・スクロール除数の増減・`KBC_SAVE`は、このPMW3610ドライバーに対応するキー操作がないため無効キーにしています。
-CPIとスクロール量は`config/boards/shields/moNa2/moNa2_R.conf`の`CONFIG_PMW3610_CPI`と`CONFIG_PMW3610_SCROLL_TICK`で変更します。
-PMW3610ドライバーはオートマウス判定で未初期化座標を参照する変更より前の版へ固定しています。移動量のしきい値指定は使用しません。
-このリポジトリはZMK v0.2.1ベースで、DYA Studioでの編集には対応していません。
+元配列のCPI増減・スクロール除数の増減・`KBC_SAVE`は、QMK固有の操作なので無効キーにしています。
+センサー有効化後の感度、スクロール量、XY入れ替え、自動マウス層はDYA Studioの入力プロセッサー設定で調整します。
+PMW3360の初期CPIは右側overlayの`cpi = <500>`で、元のKeyball39の初期値と揃えています。
+
+## DYA StudioへのUSB接続
+
+1. 右側をPCへUSB接続します。
+2. ChromeまたはEdgeで[DYA Studio](https://studio.dya.cormoran.works/)を開きます。
+3. 左手のBの右の管理キーを押しながら、右手ホーム行いちばん右のMINUSキーを押して編集ロックを解除します。
+4. StudioのUSBマークを選び、moNa2に接続します。
+5. キーマップ、Bluetooth接続先、入力プロセッサー設定を確認します。設定保存後は10秒待ってから電源を切ります。
+
+DYAのPMW3610専用センサー診断はPMW3360には使えません。共通のマウス感度・軸・レイヤー処理と、センサー専用診断を区別してください。
 
 ## ビルドと書き込み
 
@@ -44,13 +58,13 @@ GitHubへブランチをpushするとActionsが左右と設定リセット用を
 
 | ファイル | 用途 |
 | --- | --- |
-| `mona2-right-keyball39-pmw3610.uf2` | 右側、PMW3610センサー用 |
-| `mona2-left-keyball39.uf2` | 左側 |
-| `mona2-settings-reset.uf2` | 左右共通の設定リセット |
+| `mona2-right-keyball39-dya-keyboard-only.uf2` | 右側、DYAとキー入力の確認用。ボールは無効 |
+| `mona2-left-keyball39-dya.uf2` | 左側、DYA版との組み合わせ用 |
+| `mona2-settings-reset-dya.uf2` | 左右共通の設定リセット |
 
 左右は同じ実行の成果物を使用してください。この構成は`seeeduino_xiao_ble`用です。
-PAW3222センサー用ではありません。セラミック支持球かベアリングかだけではセンサーの型番は判別できないので、注文内容や販売元の案内で確認してください。
-PMW3610の初期化エラーが出ていた個体について、トラックボールの動作を保証するものではありません。
+PMW3360用の配線が未確認のため、現在の確認用UF2ではボールは動きません。
+PMW3610／PAW3222向けのSPI設定でPMW3360を駆動しないようにしています。
 
 初回に設定リセットする場合は、既存のペアリング情報がすべて消えます。
 
@@ -66,3 +80,20 @@ PMW3610の初期化エラーが出ていた個体について、トラックボ�
 ```powershell
 python tools/validate_port.py "元のKeyball39のkeymap.cへのパス"
 ```
+
+## PMW3360を有効にするために必要な情報
+
+[Keyball39の公式ガイド](https://github.com/Yowkees/keyball/blob/main/keyball39/doc/rev1/buildguide_jp.md)では読取りICをPMW3360としています。
+[採用ドライバー](https://github.com/george-norton/zmk-driver-pmw3360)はSCK、MOSI、MISO、CSを別々に設定します。
+
+必要なのは読取基板の各信号が接続されたXIAOのGPIO番号と、電源・GNDの接続です。MOTION線は任意です。
+moNa2標準のPMW3610設定ではMOSIとMISOがP0.04を共用していたため、そのまま置き換えることはできません。
+
+実配線確認後に`pmw3360-wiring.dtsi.example`を参考に`pmw3360-wiring.dtsi`を作成し、右側ビルドへ次を指定します。
+
+```yaml
+cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf'
+artifact-name: mona2-right-keyball39-dya-pmw3360
+```
+
+完成版は、配線のキー行列との競合確認、PMW3360ドライバーを含むコンパイル、実機でのID・動作確認を経てから使用してください。

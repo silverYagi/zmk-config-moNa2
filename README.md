@@ -1,6 +1,7 @@
 # moNa2 詳細説明
 
-このブランチには個人用Keyball39配列の移植と、Windows用Bluetooth互換設定を含みます。
+このブランチには個人用Keyball39配列、DYA Studio対応、Windows用Bluetooth互換設定を含みます。
+Keyball39のPMW3360読取基板の実配線は確認中です。現在の右側UF2はセンサーを駆動しないキーボード確認用です。
 配列・接続操作・書き込み方法は[Keyball39配列の説明](docs/keyball39-layout.md)を参照してください。
 
 moNa2の最新ファームウェアはこちら

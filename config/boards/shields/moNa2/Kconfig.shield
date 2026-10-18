@@ -3,3 +3,10 @@ config SHIELD_MONA2_R
 
 config SHIELD_MONA2_L
     def_bool $(shields_list_contains,moNa2_L)
+
+config TRACKBALL_PMW3360
+    bool "Keyball39 PMW3360 trackball"
+    depends on SHIELD_MONA2_R
+    default n
+    help
+      PMW3360の配線を確認し、pmw3360-wiring.dtsiを作成してから有効にする。

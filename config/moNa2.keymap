@@ -33,6 +33,7 @@
 
         /* 既定はQWERTY。ホーム行の長押し修飾キーもKeyball39と同じ。 */
         qwerty {
+            display-name = "QWERTY";
             bindings = <
 &kp Q       &kp W          &kp E         &kp R          &kp T                           &kp Y       &kp U          &kp I         &kp O          &kp P
 &kp A       &mt LCTRL S    &mt LALT D    &mt LSHIFT F    &kp G                &kp BSPC   &kp H       &mt RSHIFT J   &mt RALT K    &mt RCTRL L    &kp MINUS
@@ -44,6 +45,7 @@
 
         /* 大西配列。右下のキーを押すとQWERTYへ戻る。 */
         onishi {
+            display-name = "ONISHI";
             bindings = <
 &kp Q       &kp L          &kp U         &kp COMMA      &kp DOT                         &kp F       &kp W          &kp R         &kp Y          &kp P
 &kp E       &mt LCTRL I    &mt LALT A    &mt LSHIFT O    &kp MINUS             &trans     &kp K       &mt RSHIFT T   &mt RALT N    &mt RCTRL S    &kp H
@@ -55,6 +57,7 @@
 
         /* 記号は見た目の名称ではなく、元のQMKと同じHIDキーを送る。 */
         symbol {
+            display-name = "SYMBOL";
             bindings = <
 &kp RIGHT_BRACKET &kp BACKSLASH &kp INT3 &kp EQUAL      &kp LS(N1)                       &kp LS(EQUAL) &kp LS(N3)   &kp LS(LEFT_BRACKET) &kp LS(N5)   &kp LEFT_BRACKET
 &kp LS(N8)  &kp LS(N9)     &kp SQT       &kp SEMI       &kp LS(N6)            &trans     &kp MINUS   &mkp MB1       &mkp MB3      &mkp MB2       &mt LSHIFT INT3
@@ -66,6 +69,7 @@
 
         /* 左手は数字、右手はカーソル・編集・日本語入力切り替え。 */
         number_nav {
+            display-name = "NUM_NAV";
             bindings = <
 &kp ESC     &kp N7         &kp N8        &kp N9         &kp SLASH                       &kp HOME    &kp BSPC       &kp DEL       &kp END        &kp PG_UP
 &kp TAB     &kp N4         &kp N5        &kp N6         &kp LS(SQT)           &trans     &kp LEFT    &kp DOWN       &kp UP        &kp RIGHT      &kp K_APP
@@ -77,6 +81,7 @@
 
         /* このレイヤーを押している間はトラックボールもスクロール。 */
         function {
+            display-name = "FUNCTION";
             bindings = <
 &trans      &kp F7         &kp F8        &kp F9         &kp F12                         &kp C       &trans         &trans        &none          &none
 &kp LC(LG(TAB)) &kp F4     &kp F5        &kp F6         &kp F11               &trans     &kp LC(LG(TAB)) &kp C_PP   &kp C_VOL_UP  &none          &none
@@ -88,9 +93,10 @@
 
         /* 左手の追加キーを押したまま操作。接続情報の消去は現在の接続先のみ。 */
         bluetooth {
+            display-name = "BLE";
             bindings = <
 &out OUT_USB &out OUT_BLE  &none         &none          &none                           &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3   &bt BT_SEL 4
-&none       &none          &none         &none          &none                 &none      &none       &none          &none         &none          &none
+&none       &none          &none         &none          &none                 &none      &none       &none          &none         &none          &studio_unlock
 &none       &none          &none         &none          &none   &trans        &none      &none       &none          &none         &none          &bt BT_CLR
 &none       &none          &none         &none          &none   &none                   &none       &none                                         &none
             >;

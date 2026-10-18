@@ -97,7 +97,7 @@ def main():
     zmk = re.sub(r"/\*.*?\*/", "", (root / "config/moNa2.keymap").read_text(encoding="utf-8"), flags=re.S)
     qmk_layers = re.findall(r"\[(_[A-Z_]+)\]\s*=\s*LAYOUT_universal\((.*?)\n\s*\),", qmk, flags=re.S)
     zmk_keymap = zmk.split('compatible = "zmk,keymap";', 1)[1]
-    zmk_layers = re.findall(r"\b(\w+)\s*\{\s*bindings\s*=\s*<(.*?)>;", zmk_keymap, flags=re.S)
+    zmk_layers = re.findall(r'\b(\w+)\s*\{\s*(?:display-name\s*=\s*"[^"]*";\s*)?bindings\s*=\s*<(.*?)>;', zmk_keymap, flags=re.S)
     assert len(qmk_layers) == 5, "元配列は5レイヤーである必要があります"
     assert len(zmk_layers) == 6, "移植先は管理用を含む6レイヤーである必要があります"
     assert len(POSITIONS) == 42
