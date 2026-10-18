@@ -13,8 +13,8 @@ manifest:
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: sayu-hub
-      # ビルドで検証する版に固定する。
-      revision: 2618e8550876e4a3e06215bf0138c4c424d0398b
+      # 座標の初期化前に移動量を判定する不具合が入る前の版に固定する。
+      revision: 870aa32b1ea3bcf00d2a284b6ec29624763c523f
     - name: zmk-rgbled-widget  # <-- new entry
       remote: caksoylar
       # v0.3.0はZMK v0.2との互換処理を含む。

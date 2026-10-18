@@ -35,6 +35,7 @@ Windowsとの互換性確認用に、右側の`CONFIG_BT_CTLR_PHY_2M=n`を設定
 
 元配列のCPI増減・スクロール除数の増減・`KBC_SAVE`は、このPMW3610ドライバーに対応するキー操作がないため無効キーにしています。
 CPIとスクロール量は`config/boards/shields/moNa2/moNa2_R.conf`の`CONFIG_PMW3610_CPI`と`CONFIG_PMW3610_SCROLL_TICK`で変更します。
+PMW3610ドライバーはオートマウス判定で未初期化座標を参照する変更より前の版へ固定しています。移動量のしきい値指定は使用しません。
 このリポジトリはZMK v0.2.1ベースで、DYA Studioでの編集には対応していません。
 
 ## ビルドと書き込み
