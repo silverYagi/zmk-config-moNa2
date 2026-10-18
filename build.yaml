@@ -20,7 +20,10 @@
 include:
   - board: seeeduino_xiao_ble
     shield: moNa2_R rgbled_adapter
+    artifact-name: mona2-right-keyball39-pmw3610
   - board: seeeduino_xiao_ble
     shield: moNa2_L rgbled_adapter
+    artifact-name: mona2-left-keyball39
   - board: seeeduino_xiao_ble
     shield: settings_reset
+    artifact-name: mona2-settings-reset
