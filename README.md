@@ -2,7 +2,7 @@
 
 このブランチには個人用Keyball39配列、DYA Studio対応、Windows用Bluetooth互換設定を含みます。
 PMW3360を有効にした[トラックボール試験版](docs/pmw3360-test.md)と、センサー無効のキーボード確認版をビルドします。
-試験版は本体ソケットの配線対応に仮定を含み、実機動作は未確認です。
+PMW3360版は実機のボール・DYA接続を確認済みです。[Windows向けパスキー認証の比較版](docs/windows-bluetooth-passkey.md)もビルドします。
 配列・接続操作・書き込み方法は[Keyball39配列の説明](docs/keyball39-layout.md)を参照してください。
 
 moNa2の最新ファームウェアはこちら
