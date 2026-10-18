@@ -16,7 +16,7 @@ Windowsでのペアリング成功は実機確認が必要です。
 3. 表示されたドライブへ`mona2-right-keyball39-dya-pmw3360-passkey.uf2`をコピーします。
 4. 左右の電源をONにして、まずUSBでキーとボールが動くことを確認します。
 
-左用UF2は変更していません。左の書き換えと`settings_reset`の書き込みは不要です。
+左も同じDYA対応版を使用します。既に`mona2-left-keyball39-dya.uf2`を書き込み、右のUSB接続で左右とも入力できていれば、左の再書き込みは不要です。`settings_reset`は使用しません。
 
 ## Windowsとのペアリング
 

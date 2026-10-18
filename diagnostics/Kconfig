@@ -1,0 +1,7 @@
+config MONA2_BLE_DIAGNOSTICS
+    bool "moNa2 Bluetooth connection diagnostics"
+    depends on BT_SMP && LOG
+    default n
+    help
+      一時的な診断用。接続、切断、認証結果を記録する。
+      キーコード、パスキー、暗号鍵は出力しない。

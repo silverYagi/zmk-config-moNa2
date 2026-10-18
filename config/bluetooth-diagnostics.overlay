@@ -1,0 +1,13 @@
+/* DYAのRPC用UARTとは別のUSBシリアルへ診断ログを出す。 */
+/ {
+    chosen {
+        zephyr,console = &mona2_ble_diagnostics_uart;
+        zephyr,shell-uart = &mona2_ble_diagnostics_uart;
+    };
+};
+
+&zephyr_udc0 {
+    mona2_ble_diagnostics_uart: mona2_ble_diagnostics_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
