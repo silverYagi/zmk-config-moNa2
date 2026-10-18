@@ -1,5 +1,10 @@
-# センサー配線の確認中は、端子を駆動しないDYAキーボード確認用のみ生成する。
+# PMW3360試験版と、切り戻し用のボール無効版を生成する。
 include:
+  - board: seeeduino_xiao_ble
+    shield: moNa2_R rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf'
+    artifact-name: mona2-right-keyball39-dya-pmw3360-test
   - board: seeeduino_xiao_ble
     shield: moNa2_R rgbled_adapter
     snippet: studio-rpc-usb-uart

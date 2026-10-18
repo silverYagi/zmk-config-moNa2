@@ -1,3 +1,6 @@
 build:
+  cmake: modules/pmw3360
+  kconfig: modules/pmw3360/Kconfig
   settings:
     board_root: .
+    dts_root: modules/pmw3360

@@ -1,0 +1,15 @@
+/*
+ * PMW3360試験版の配線仮定。実機の導通確認済みの値ではない。
+ * 写真の読取基板: SCK / NCS / GND / 5V / GND / MOSI / MISO。
+ * moNa2標準設定のSCK、CS、SDIO出力を引き継ぎ、MOTION入力をMISOへ変更する。
+ * 新たな出力端子は追加しない。電源・GNDの配線はファームウェアでは変更しない。
+ */
+#define PMW3360_SCK_PORT 0
+#define PMW3360_SCK_PIN 5
+#define PMW3360_MOSI_PORT 0
+#define PMW3360_MOSI_PIN 4
+#define PMW3360_MISO_PORT 0
+#define PMW3360_MISO_PIN 2
+#define PMW3360_CS_CONTROLLER gpio0
+#define PMW3360_CS_PIN 9
+/* 写真の7ピン基板にはMOTION端子がないためIRQは使用しない。 */

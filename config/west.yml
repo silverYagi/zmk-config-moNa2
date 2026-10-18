@@ -4,8 +4,6 @@ manifest:
       url-base: https://github.com/cormoran
     - name: caksoylar
       url-base: https://github.com/caksoylar
-    - name: george-norton
-      url-base: https://github.com/george-norton
   projects:
     # 公式moNa2 v2が利用するDYA対応ZMKの版を固定する。
     - name: zmk
@@ -24,9 +22,6 @@ manifest:
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: 8756cb7b8114069fa3c25c6f6c990f24988fceff
-    # Keyball39の読取基板はPMW3360。PMW3610用ドライバーは使用しない。
-    - name: zmk-driver-pmw3360
-      remote: george-norton
-      revision: 0dfa2f0411b795613a35f222f993e45a1e4cc32a
+    # PMW3360はポーリング修正を加えたmodules/pmw3360を使用する。
   self:
     path: config

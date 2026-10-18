@@ -1,8 +1,9 @@
 # Keyball39配列のmoNa2移植版
 
-現在はDYA Studio対応のキーボード確認用です。右側のトラックボール端子は駆動しません。
+現在はDYA Studio対応のキーボード確認版と、PMW3360トラックボール試験版をビルドします。
+試験版の書き込み方法・端子対応の仮定は[PMW3360試験版の説明](pmw3360-test.md)を参照してください。
 Keyball39の読取基板はPMW3360用で、以前のPMW3610用とはドライバーが違います。
-PMW3360を有効にした完成版には、moNa2へ接続したSCK／MOSI／MISO／CSと電源の実配線確認が必要です。
+PMW3360試験版は既存のMOTION端子をMISO入力として使用します。実配線と電源の確認は残っています。
 
 個人用Keyball39の`keymaps/via/keymap.c`を基に、物理的に存在する39キーをmoNa2の対応する位置へ移植しています。
 元のKeyball39と同じ日本語／英語キーボード設定をWindowsでも使ってください。特に記号キーは元と同じHIDコードを送ります。
@@ -58,13 +59,13 @@ GitHubへブランチをpushするとActionsが左右と設定リセット用を
 
 | ファイル | 用途 |
 | --- | --- |
+| `mona2-right-keyball39-dya-pmw3360-test.uf2` | 右側、PMW3360有効。配線仮定付きの試験版 |
 | `mona2-right-keyball39-dya-keyboard-only.uf2` | 右側、DYAとキー入力の確認用。ボールは無効 |
 | `mona2-left-keyball39-dya.uf2` | 左側、DYA版との組み合わせ用 |
 | `mona2-settings-reset-dya.uf2` | 左右共通の設定リセット |
 
 左右は同じ実行の成果物を使用してください。この構成は`seeeduino_xiao_ble`用です。
-PMW3360用の配線が未確認のため、現在の確認用UF2ではボールは動きません。
-PMW3610／PAW3222向けのSPI設定でPMW3360を駆動しないようにしています。
+`keyboard-only`の確認用UF2ではボールは動きません。ボールの確認には`pmw3360-test`を使用します。
 
 初回に設定リセットする場合は、既存のペアリング情報がすべて消えます。
 
@@ -81,7 +82,7 @@ PMW3610／PAW3222向けのSPI設定でPMW3360を駆動しないようにして�
 python tools/validate_port.py "元のKeyball39のkeymap.cへのパス"
 ```
 
-## PMW3360を有効にするために必要な情報
+## PMW3360の配線について
 
 [Keyball39の公式ガイド](https://github.com/Yowkees/keyball/blob/main/keyball39/doc/rev1/buildguide_jp.md)では読取りICをPMW3360としています。
 [採用ドライバー](https://github.com/george-norton/zmk-driver-pmw3360)はSCK、MOSI、MISO、CSを別々に設定します。
@@ -89,11 +90,11 @@ python tools/validate_port.py "元のKeyball39のkeymap.cへのパス"
 必要なのは読取基板の各信号が接続されたXIAOのGPIO番号と、電源・GNDの接続です。MOTION線は任意です。
 moNa2標準のPMW3610設定ではMOSIとMISOがP0.04を共用していたため、そのまま置き換えることはできません。
 
-実配線確認後に`pmw3360-wiring.dtsi.example`を参考に`pmw3360-wiring.dtsi`を作成し、右側ビルドへ次を指定します。
+写真の端子表記を基に`pmw3360-wiring.dtsi`へ試験用の対応を記述し、右側ビルドへ次を指定しています。
 
 ```yaml
 cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf'
-artifact-name: mona2-right-keyball39-dya-pmw3360
+artifact-name: mona2-right-keyball39-dya-pmw3360-test
 ```
 
-完成版は、配線のキー行列との競合確認、PMW3360ドライバーを含むコンパイル、実機でのID・動作確認を経てから使用してください。
+設定上のGPIOはキー行列と競合しません。配線の対応とセンサーのID・動作は実機確認が必要です。

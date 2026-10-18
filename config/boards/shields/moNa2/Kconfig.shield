@@ -9,4 +9,4 @@ config TRACKBALL_PMW3360
     depends on SHIELD_MONA2_R
     default n
     help
-      PMW3360の配線を確認し、pmw3360-wiring.dtsiを作成してから有効にする。
+      pmw3360-wiring.dtsiの接続仮定でPMW3360を読み取る試験版。
