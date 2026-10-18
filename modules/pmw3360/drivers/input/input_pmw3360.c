@@ -299,7 +299,7 @@ static void pmw3360_async_init(struct k_work *work) {
     // Step 6: download the SROM. We will skip this.
     // Step 7: configure the sensor.
 
-    // Log the sensor product and revision ID. We expect 0x66, 0x01
+    /* PMW3360の製品IDは66（十進数）=0x42、リビジョンは0x01。 */
     uint8_t product_id = 0;
     int r1 = pmw3360_spi_read_reg(dev, PMW3360_REG_PRODUCT_ID, &product_id);
 
@@ -308,7 +308,7 @@ static void pmw3360_async_init(struct k_work *work) {
 
     LOG_INF("PMW3360 product 0x%02x (%d), revision 0x%02x (%d)", product_id, r1, revision_id, r2);
     /* 接続を確認できなければポーリングを開始しない。 */
-    if (r1 != 0 || r2 != 0 || product_id != 0x66 || revision_id != 0x01) {
+    if (r1 != 0 || r2 != 0 || product_id != 0x42 || revision_id != 0x01) {
         LOG_ERR("PMW3360 ID mismatch; check sensor power and SPI wiring");
         gpio_pin_set_dt(&config->cs_gpio, 0);
         return;
