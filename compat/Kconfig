@@ -1,0 +1,11 @@
+config MONA2_LEGACY_BEHAVIOR_IDS
+    bool "Read legacy table-based behavior IDs alongside CRC16 IDs"
+    depends on SETTINGS && ZMK_BEHAVIOR_LOCAL_ID_TYPE_CRC16
+    help
+      旧版のbehavior/local_idテーブルを参照し、CRC16へ切り替える前に
+      保存した配列を読み取る。設定の削除や書き換えは行わない。
+
+config MONA2_LEGACY_BEHAVIOR_ID_LIMIT
+    int "Maximum number of legacy behavior aliases"
+    depends on MONA2_LEGACY_BEHAVIOR_IDS
+    default 128
