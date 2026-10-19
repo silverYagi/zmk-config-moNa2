@@ -1,27 +1,14 @@
-# BLE再起動対策の比較版と、既存のPMW3360版を生成する。
+# DYAの診断・ランタイム編集機能に対応する左右セット。
 include:
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble/nrf52840/zmk
     shield: moNa2_R rgbled_adapter
     snippet: studio-rpc-usb-uart
-    cmake-args: '-DEXTRA_CONF_FILE="../../config/pmw3360.conf;../../config/bluetooth-passkey.conf;../../config/bluetooth-radio-latency.conf" -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
-    artifact-name: mona2-right-keyball39-dya-pmw3360-ble-fix212
-  - board: seeeduino_xiao_ble
-    shield: moNa2_R rgbled_adapter
-    snippet: studio-rpc-usb-uart
-    cmake-args: '-DEXTRA_CONF_FILE="../../config/pmw3360.conf;../../config/bluetooth-passkey.conf" -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
-    artifact-name: mona2-right-keyball39-dya-pmw3360-passkey
-  - board: seeeduino_xiao_ble
-    shield: moNa2_R rgbled_adapter
-    snippet: studio-rpc-usb-uart
-    cmake-args: '-DEXTRA_CONF_FILE=../../config/pmw3360.conf -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
-    artifact-name: mona2-right-keyball39-dya-pmw3360-test
-  - board: seeeduino_xiao_ble
-    shield: moNa2_R rgbled_adapter
-    snippet: studio-rpc-usb-uart
-    artifact-name: mona2-right-keyball39-dya-keyboard-only
-  - board: seeeduino_xiao_ble
+    cmake-args: '-DEXTRA_CONF_FILE="../../config/dya-diagnostics-common.conf;../../config/pmw3360.conf;../../config/bluetooth-passkey.conf;../../config/bluetooth-radio-latency.conf" -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
+    artifact-name: mona2-right-pmw3360-dya-features
+  - board: xiao_ble/nrf52840/zmk
     shield: moNa2_L rgbled_adapter
-    artifact-name: mona2-left-keyball39-dya
-  - board: seeeduino_xiao_ble
+    cmake-args: '-DEXTRA_CONF_FILE=../../config/dya-diagnostics-common.conf'
+    artifact-name: mona2-left-dya-features
+  - board: xiao_ble/nrf52840/zmk
     shield: settings_reset
-    artifact-name: mona2-settings-reset-dya
+    artifact-name: mona2-settings-reset-dya-features

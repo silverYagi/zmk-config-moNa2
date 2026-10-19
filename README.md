@@ -1,5 +1,7 @@
 # moNa2 詳細説明
 
+このブランチは[添付配列とDYA診断・ランタイム編集対応版](docs/dya-features.md)です。左右セットで更新してください。PMW3360を継続使用します。
+
 このブランチには個人用Keyball39配列、DYA Studio対応、Windows用Bluetooth互換設定を含みます。
 PMW3360を有効にした[トラックボール試験版](docs/pmw3360-test.md)と、センサー無効のキーボード確認版をビルドします。
 PMW3360版は実機のボール・DYA接続を確認済みです。[Windows向けパスキー認証の比較版](docs/windows-bluetooth-passkey.md)もビルドします。

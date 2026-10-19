@@ -5,23 +5,56 @@ manifest:
     - name: caksoylar
       url-base: https://github.com/caksoylar
   projects:
-    # 公式moNa2 v2が利用するDYA対応ZMKの版を固定する。
+    # DYAの診断・マクロ・コンボに対応する基盤とモジュールを固定する。
     - name: zmk
       remote: cormoran
-      revision: 4493783ef88ce2e653bf8217c92ee17140df71e3
+      revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8
       import: app/west.yml
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: c6a7fef3a3be3d3ace5de9a4b0628c6418cd1f3f
     - name: zmk-module-ble-management
       remote: cormoran
-      revision: 851661c
+      revision: 57738cc4fc6ba80e82a7ac57741a0339cb186cd4
     - name: zmk-module-settings-rpc
       remote: cormoran
-      revision: ad1c995
+      revision: 78f86df9e6c5edaf57bef3ccbd7f360cfdf49291
     - name: zmk-module-runtime-input-processor
       remote: cormoran
-      revision: dbf92f7
+      revision: decf628d7ce5ed95b520c650824c28ea9de649c1
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: 8cedd2dd9f04e19ea5a17b94914dd47a09d8db11
+    - name: zmk-feature-watchdog
+      remote: cormoran
+      revision: 84ad14c6c3645dc40b23f45d08ab45418655f912
+    - name: zmk-feature-kscan-diagnostics
+      remote: cormoran
+      revision: 1432f7fe0cfe903cd7d3c9931ae6bd6f2e1f328e
+    - name: zmk-feature-input-stream
+      remote: cormoran
+      revision: aeb015908a42a7615ccdccc7feb3a10d23132a71
+    - name: zmk-module-devtool
+      remote: cormoran
+      revision: 9938a2c73c06d6e65ba2c0b68c9aa044a467eafc
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: 38530962eb7061b60efcb98e84585cfb1f0cb6de
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: d9490e7b5d41c516221d131241009e81740efcee
+    - name: zmk-behavior-runtime-sensor-rotate
+      remote: cormoran
+      revision: 8b1125ed676c1f5e14145d217984f33d0ebdcef4
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      revision: b25cb5b324da2d9bbc84e1877c775f5b2b7c6845
+    - name: zmk-feature-os-detection
+      remote: cormoran
+      revision: 3052679f645b8fc1997275c2eaa6b86bdd55ca01
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: 8756cb7b8114069fa3c25c6f6c990f24988fceff
-    # PMW3360はポーリング修正を加えたmodules/pmw3360を使用する。
+      revision: e6b467792a1dabef8cfa5c9fd26bfefc9c16662b
+    # PMW3360は動作確認済みのローカルドライバーを継続使用する。
   self:
     path: config

@@ -16,10 +16,10 @@
 };
 
 &mouse_runtime_input_processor {
-    /* Keyball39右側と同じXY入れ替えと、記号・マウス層の自動有効化。 */
+    /* Keyball39右側と同じXY入れ替えと、MOUCE_FC層の自動有効化。 */
     xy-swap-enabled;
     temp-layer-enabled;
-    temp-layer = <2>;
+    temp-layer = <3>;
     temp-layer-activation-delay-ms = <0>;
     temp-layer-deactivation-delay-ms = <700>;
 };
@@ -28,6 +28,7 @@
     x-codes = <INPUT_REL_X>;
     y-codes = <INPUT_REL_Y>;
     xy-to-scroll-enabled;
+    y-invert;
     active-layers = <0x10>;
     scale-multiplier = <1>;
     scale-divisor = <8>;
