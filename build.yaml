@@ -1,5 +1,10 @@
-# パスキー認証の比較版と、動作確認済みのPMW3360版を生成する。
+# BLE再起動対策の比較版と、既存のPMW3360版を生成する。
 include:
+  - board: seeeduino_xiao_ble
+    shield: moNa2_R rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: '-DEXTRA_CONF_FILE="../../config/pmw3360.conf;../../config/bluetooth-passkey.conf;../../config/bluetooth-radio-latency.conf" -DEXTRA_DTC_OVERLAY_FILE=../../config/pmw3360.overlay'
+    artifact-name: mona2-right-keyball39-dya-pmw3360-ble-fix212
   - board: seeeduino_xiao_ble
     shield: moNa2_R rgbled_adapter
     snippet: studio-rpc-usb-uart
